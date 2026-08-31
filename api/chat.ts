@@ -1,8 +1,8 @@
 import { GoogleGenerativeAI, type GenerativeModel } from "@google/generative-ai";
-import { hackathon } from "../src/data/hackathon.ts";
-import { featuredProjects } from "../src/data/projects.ts";
-import { profile } from "../src/data/profile.ts";
-import { translations, type Lang } from "../src/i18n/translations.ts";
+import { hackathon } from "../src/data/hackathon.js";
+import { featuredProjects } from "../src/data/projects.js";
+import { profile } from "../src/data/profile.js";
+import { translations, type Lang } from "../src/i18n/translations.js";
 
 // Função serverless (Vercel, runtime Node.js). Guarda a chave da API no
 // servidor — nunca exponha GEMINI_API_KEY no bundle do front-end.

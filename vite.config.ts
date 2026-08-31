@@ -1,16 +1,32 @@
 import react from "@vitejs/plugin-react";
-import { defineConfig, loadEnv, type Connect, type Plugin } from "vite";
-import chatHandler, { type VercelResponse } from "./api/chat.ts";
+import { defineConfig, loadEnv, type Connect, type Plugin, type ViteDevServer } from "vite";
+
+// Tipagem mínima espelhando api/chat.ts, sem importar o arquivo estaticamente
+// (evita puxar as regras de resolução de módulo/extensão que a Vercel exige
+// pro build da função real para dentro da checagem de tipos local do Vite).
+type ChatHandler = (
+  req: { method?: string; body?: unknown },
+  res: { status: (code: number) => { json: (body: unknown) => void } },
+) => Promise<void>;
 
 // Plugin só para desenvolvimento local: reproduz a função serverless da
 // Vercel (api/chat.ts) dentro do próprio servidor do Vite, assim
 // `npm run dev` já responde de verdade em /api/chat, sem precisar da CLI
 // da Vercel nem de login. Em produção (Vercel), quem roda é o api/chat.ts
 // original — este plugin não entra no build.
+//
+// Carrega api/chat.ts via server.ssrLoadModule (a API oficial do Vite pra
+// rodar TS server-side em dev), em vez de um import estático: assim a
+// checagem de tipos do vite.config.ts fica isolada das regras de extensão
+// de import que a Vercel exige (Node16/NodeNext, por causa do
+// "type": "module" do package.json).
 function localChatApiPlugin(env: Record<string, string>): Plugin {
+  let server: ViteDevServer;
+
   return {
     name: "local-chat-api",
-    configureServer(server) {
+    configureServer(devServer) {
+      server = devServer;
       server.middlewares.use("/api/chat", (async (req, res) => {
         if (req.method !== "POST") {
           res.statusCode = 405;
@@ -29,19 +45,24 @@ function localChatApiPlugin(env: Record<string, string>): Plugin {
             const body = raw ? JSON.parse(raw) : {};
             let statusCode = 200;
 
-            const fakeRes: VercelResponse = {
-              status(code: number) {
-                statusCode = code;
-                return this;
-              },
-              json(payload: unknown) {
-                res.statusCode = statusCode;
-                res.setHeader("Content-Type", "application/json");
-                res.end(JSON.stringify(payload));
-              },
-            };
+            const mod = await server.ssrLoadModule("/api/chat.ts");
+            const chatHandler = mod.default as ChatHandler;
 
-            await chatHandler({ method: "POST", body }, fakeRes);
+            await chatHandler(
+              { method: "POST", body },
+              {
+                status(code: number) {
+                  statusCode = code;
+                  return {
+                    json(payload: unknown) {
+                      res.statusCode = statusCode;
+                      res.setHeader("Content-Type", "application/json");
+                      res.end(JSON.stringify(payload));
+                    },
+                  };
+                },
+              },
+            );
           } catch (error) {
             console.error("[local-chat-api] erro:", error);
             res.statusCode = 500;
