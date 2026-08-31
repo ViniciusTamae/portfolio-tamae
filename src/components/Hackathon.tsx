@@ -1,11 +1,14 @@
 import photoAvaliacao from "../assets/hackathon-avaliacao.jpg";
 import photoEquipe from "../assets/hackathon-equipe.jpg";
 import { hackathon } from "../data/hackathon";
+import { useInView } from "../hooks/useInView";
 import { useLanguage } from "../i18n/LanguageContext";
+import { RevealItem } from "./RevealItem";
 import "./Hackathon.css";
 
 export function Hackathon() {
   const { t } = useLanguage();
+  const [ref, inView] = useInView<HTMLElement>();
 
   const photos = [
     {
@@ -23,7 +26,11 @@ export function Hackathon() {
   ];
 
   return (
-    <section id="hackathon" className="section">
+    <section
+      id="hackathon"
+      ref={ref}
+      className={`section reveal${inView ? " reveal-visible" : ""}`}
+    >
       <p className="section-eyebrow hackathon-eyebrow">{t.hackathon.eyebrow}</p>
       <h2 className="section-title hackathon-title">{hackathon.eventName}</h2>
 
@@ -48,22 +55,24 @@ export function Hackathon() {
       </div>
 
       <div className="hackathon-gallery">
-        {photos.map((photo) => (
-          <figure key={photo.file} className="card hackathon-photo-card">
-            <div className="win-bar">
-              <span className="win-dots">
-                <span />
-                <span />
-              </span>
-              {photo.file}
-            </div>
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              className="hackathon-photo"
-              style={{ objectPosition: photo.position }}
-            />
-          </figure>
+        {photos.map((photo, index) => (
+          <RevealItem key={photo.file} delay={index * 100}>
+            <figure className="card hackathon-photo-card">
+              <div className="win-bar">
+                <span className="win-dots">
+                  <span />
+                  <span />
+                </span>
+                {photo.file}
+              </div>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                className="hackathon-photo"
+                style={{ objectPosition: photo.position }}
+              />
+            </figure>
+          </RevealItem>
         ))}
       </div>
     </section>

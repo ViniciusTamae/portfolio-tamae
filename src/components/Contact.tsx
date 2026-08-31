@@ -1,13 +1,19 @@
 import { profile } from "../data/profile";
+import { useInView } from "../hooks/useInView";
 import { useLanguage } from "../i18n/LanguageContext";
 import { GithubIcon, LinkedinIcon, MailIcon } from "./icons";
 import "./Contact.css";
 
 export function Contact() {
   const { t } = useLanguage();
+  const [ref, inView] = useInView<HTMLElement>();
 
   return (
-    <section id="contato" className="section">
+    <section
+      id="contato"
+      ref={ref}
+      className={`section reveal${inView ? " reveal-visible" : ""}`}
+    >
       <p className="section-eyebrow contact-eyebrow">{t.contact.eyebrow}</p>
       <h2 className="section-title contact-title">{t.contact.title}</h2>
 

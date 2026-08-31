@@ -132,6 +132,24 @@ a:hover {
   border-bottom: none;
 }
 
+/* Revelação ao rolar a página — aplicada à seção inteira (.reveal) ou a
+   itens individuais dentro dela via <RevealItem> (.reveal-item), sem
+   depender de JS pra exibir o conteúdo (só troca opacidade/posição). */
+.reveal,
+.reveal-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal.reveal-visible,
+.reveal-item.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .section-eyebrow {
   display: inline-flex;
   align-items: center;
