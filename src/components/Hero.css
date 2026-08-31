@@ -1,0 +1,111 @@
+.hero {
+  padding: 110px 24px 96px;
+}
+
+.hero-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hero-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.operator-panel {
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  max-width: 440px;
+}
+
+.operator-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: grayscale(0.25) contrast(1.05);
+}
+
+.hero-prompt {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink-dim);
+  margin: 0 0 10px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 4.4vw, 46px);
+  letter-spacing: -0.01em;
+}
+
+.hero-name {
+  display: inline-block;
+}
+
+.hero-name-letter {
+  display: inline-block;
+  white-space: pre;
+  cursor: default;
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.25s ease;
+}
+
+.hero-name-letter:hover {
+  transform: translateY(-10px);
+  color: var(--amber);
+}
+
+.hero-role {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--amber);
+}
+
+.hero-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-soft);
+  flex-shrink: 0;
+}
+
+.hero-tagline {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.hero-summary {
+  margin: 22px 0 0;
+  max-width: 500px;
+  font-size: 16.5px;
+  color: var(--ink-dim);
+}
+
+.hero-actions {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

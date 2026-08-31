@@ -1,0 +1,24 @@
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.skill-tag:hover {
+  border-color: var(--amber-border);
+  color: var(--amber);
+}
+
+.skill-tag-prefix {
+  color: var(--ink-faint);
+}
+
+.skill-tag:hover .skill-tag-prefix {
+  color: var(--amber-dim);
+}

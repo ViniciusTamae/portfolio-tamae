@@ -1,0 +1,74 @@
+.agent-trace {
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  max-width: 440px;
+}
+
+.agent-trace-body {
+  margin: 0;
+  padding: 20px 18px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.85;
+  height: 240px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+.trace-line {
+  display: block;
+}
+
+.trace-prompt {
+  color: var(--ink);
+}
+
+.trace-call {
+  color: var(--ink-dim);
+  padding-left: 8px;
+}
+
+.trace-ok {
+  color: var(--teal);
+  padding-left: 8px;
+}
+
+.trace-info {
+  color: var(--amber);
+  padding-left: 8px;
+}
+
+.trace-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  background: var(--amber);
+  margin-left: 2px;
+  transform: translateY(2px);
+  animation: trace-blink 1s step-end infinite;
+}
+
+.trace-cursor-idle {
+  align-self: flex-start;
+}
+
+@keyframes trace-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .agent-trace {
+    max-width: 100%;
+  }
+}

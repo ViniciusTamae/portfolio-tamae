@@ -1,0 +1,41 @@
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.site-footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-line {
+  font-family: var(--mono);
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+.footer-line-prefix {
+  color: var(--amber-dim);
+  margin-right: 6px;
+}
+
+.site-footer .social-icons {
+  display: flex;
+  gap: 14px;
+  color: var(--ink-dim);
+}
+
+.site-footer .social-icons a {
+  color: inherit;
+  display: flex;
+}
+
+.site-footer .social-icons a:hover {
+  color: var(--amber);
+}

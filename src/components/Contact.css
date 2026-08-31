@@ -1,0 +1,55 @@
+.section-eyebrow.contact-eyebrow {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.section-title.contact-title {
+  text-align: center;
+}
+
+.contact-panel {
+  padding: 0;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-body {
+  padding: 28px;
+}
+
+.contact-text {
+  color: var(--ink-dim);
+  font-size: 15.5px;
+  max-width: 480px;
+}
+
+.contact-output {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 14.5px;
+  color: var(--ink);
+}
+
+.contact-line:hover {
+  color: var(--amber);
+  text-decoration: none;
+}
+
+.contact-line-prefix {
+  color: var(--teal);
+}
+
+.contact-cta {
+  margin-top: 28px;
+}

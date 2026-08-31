@@ -1,0 +1,137 @@
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 4px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 4px;
+}
+
+.timeline-item {
+  position: relative;
+  flex: 0 0 248px;
+  padding: 0 16px;
+}
+
+/* Trilho horizontal contínuo por trás dos marcadores, dentro de cada item. */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Não deixa o trilho escapar antes do primeiro marcador nem depois do último. */
+.timeline-item:first-child::before {
+  left: 50%;
+}
+
+.timeline-item:last-child::before {
+  right: 50%;
+}
+
+.timeline-rail {
+  position: relative;
+  height: 18px;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  transform: translateX(-50%);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 3px var(--amber-soft);
+  transition: box-shadow 0.2s ease;
+}
+
+.timeline-marker[data-type="formacao"] {
+  background: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-soft);
+}
+
+.timeline-item:hover .timeline-marker {
+  box-shadow: 0 0 0 5px var(--amber-soft);
+}
+
+.timeline-item:hover .timeline-marker[data-type="formacao"] {
+  box-shadow: 0 0 0 5px var(--teal-soft);
+}
+
+.timeline-hash {
+  display: block;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--amber-dim);
+}
+
+.timeline-period {
+  display: block;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+.timeline-content {
+  margin-top: 14px;
+}
+
+.timeline-content h3 {
+  font-size: 16.5px;
+  line-height: 1.3;
+  display: inline-block;
+  transform-origin: left top;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.timeline-item:hover .timeline-content h3 {
+  transform: scale(1.1);
+  color: var(--amber);
+}
+
+.timeline-place {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.timeline-badge {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  padding: 2px 7px;
+  border-radius: var(--radius);
+  border: 1px solid var(--amber-border);
+  color: var(--amber);
+}
+
+.timeline-badge-formacao {
+  border-color: var(--teal-soft);
+  color: var(--teal);
+}
+
+.timeline-badge-mid {
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.timeline-description {
+  margin-top: 10px;
+  color: var(--ink-dim);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .timeline-item {
+    flex-basis: 216px;
+  }
+}
