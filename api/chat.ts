@@ -25,6 +25,13 @@ export type VercelResponse = {
 
 const MAX_MESSAGE_LENGTH = 500;
 const AI_NAME = "LeticIA";
+const BIRTH_YEAR = 2002;
+
+// Calculada a cada requisição — a idade nunca fica desatualizada conforme
+// os anos passam, sem precisar editar isso manualmente.
+function currentAge(): number {
+  return new Date().getFullYear() - BIRTH_YEAR;
+}
 
 // O modelo do Gemini às vezes retorna 503 ("high demand") — erro transitório
 // de sobrecarga, vale tentar de novo rapidinho. Um 429 geralmente é cota
@@ -103,6 +110,9 @@ O contexto sobre ${profile.name} abaixo ainda está sendo ampliado — use apena
 
 CONTEXTO:
 
+## Dados pessoais
+Nome completo: ${profile.name}. Nascido em ${BIRTH_YEAR}, atualmente com ${currentAge()} anos (idade calculada a partir do ano de nascimento — sempre correta, não precisa ser atualizada manualmente).
+
 ## Sobre
 ${t.about.paragraphs.join("\n\n")}
 
@@ -121,7 +131,11 @@ ${hackathon.eventName} (${t.hackathon.edition}) — ${t.hackathon.role}. ${t.hac
 ## Contato
 E-mail: ${profile.email}
 LinkedIn: ${profile.linkedin}
-GitHub: ${profile.github}`;
+GitHub: ${profile.github}
+Localização: ${profile.location}. Não divulgue endereço físico — se perguntarem onde ${firstName} mora ou como encontrá-lo pessoalmente, diga que o contato deve ser feito por e-mail ou LinkedIn.
+
+## Situação profissional atual
+${firstName} está em busca de novas oportunidades no momento. Se perguntarem onde ele trabalha atualmente ou se está empregado, responda que ele está em busca de novas oportunidades (não diga que ele está desempregado nem invente um cargo atual — use exatamente essa formulação).`;
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
