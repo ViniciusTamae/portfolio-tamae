@@ -1,9 +1,10 @@
-import photoAvaliacao from "../assets/hackathon-avaliacao.jpg";
-import photoEquipe from "../assets/hackathon-equipe.jpg";
-import { hackathon } from "../data/hackathon";
-import { useInView } from "../hooks/useInView";
-import { useLanguage } from "../i18n/LanguageContext";
-import { RevealItem } from "./RevealItem";
+import photoAvaliacao from "../../assets/hackathon-avaliacao.jpg";
+import photoEquipe from "../../assets/hackathon-equipe.jpg";
+import { hackathon } from "../../data/hackathon";
+import { useInView } from "../../hooks/useInView";
+import { useLanguage } from "../../i18n/LanguageContext";
+import { RevealItem } from "../ui/RevealItem";
+import { WinBar } from "../ui/WinBar";
 import "./Hackathon.css";
 
 export function Hackathon() {
@@ -35,13 +36,7 @@ export function Hackathon() {
       <h2 className="section-title hackathon-title">{hackathon.eventName}</h2>
 
       <div className="hackathon-panel card">
-        <div className="win-bar">
-          <span className="win-dots">
-            <span />
-            <span />
-          </span>
-          {t.hackathon.panelLabel}
-        </div>
+        <WinBar>{t.hackathon.panelLabel}</WinBar>
         <div className="hackathon-body">
           <div className="hackathon-tags">
             <span className="tag">{t.hackathon.edition}</span>
@@ -56,15 +51,9 @@ export function Hackathon() {
 
       <div className="hackathon-gallery">
         {photos.map((photo, index) => (
-          <RevealItem key={photo.file} delay={index * 100}>
+          <RevealItem key={photo.file} delay={index * 100} variant="zoom">
             <figure className="card hackathon-photo-card">
-              <div className="win-bar">
-                <span className="win-dots">
-                  <span />
-                  <span />
-                </span>
-                {photo.file}
-              </div>
+              <WinBar>{photo.file}</WinBar>
               <img
                 src={photo.src}
                 alt={photo.alt}

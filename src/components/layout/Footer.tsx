@@ -1,5 +1,5 @@
-import { profile } from "../data/profile";
-import { GithubIcon, LinkedinIcon, MailIcon } from "./icons";
+import { profile } from "../../data/profile";
+import { GithubIcon, LinkedinIcon, MailIcon, WhatsappIcon } from "../ui/icons";
 import "./Footer.css";
 
 export function Footer() {
@@ -18,6 +18,9 @@ export function Footer() {
           </a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
             <LinkedinIcon />
+          </a>
+          <a href={profile.whatsapp} target="_blank" rel="noreferrer" aria-label="WhatsApp">
+            <WhatsappIcon />
           </a>
           <a href={`mailto:${profile.email}`} aria-label="E-mail">
             <MailIcon />

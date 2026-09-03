@@ -3,12 +3,15 @@ import { cloneElement, isValidElement, useEffect, useRef, useState, type ReactEl
 type RevealItemProps = {
   children: ReactElement;
   delay?: number;
+  /** "slide" (padrão): fade + desliza pra cima, pra texto/dados.
+      "zoom": fade + foco de câmera, só pra conteúdo fotográfico de verdade. */
+  variant?: "slide" | "zoom";
 };
 
 // Clona o elemento filho pra anexar ref + classe de revelação, sem
 // adicionar nenhum <div> extra no DOM — importante pra não quebrar grids/
 // flex que dependem dos filhos diretos (timeline, cards de projeto, etc.).
-export function RevealItem({ children, delay = 0 }: RevealItemProps) {
+export function RevealItem({ children, delay = 0, variant = "slide" }: RevealItemProps) {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -33,7 +36,8 @@ export function RevealItem({ children, delay = 0 }: RevealItemProps) {
   if (!isValidElement(children)) return children;
 
   const props = children.props as { className?: string; style?: React.CSSProperties };
-  const className = [props.className, "reveal-item", visible && "reveal-visible"]
+  const baseClass = variant === "zoom" ? "reveal-zoom" : "reveal-item";
+  const className = [props.className, baseClass, visible && "reveal-visible"]
     .filter(Boolean)
     .join(" ");
 

@@ -69,10 +69,15 @@
     transform 0.15s ease;
 }
 
-.repo-card:hover {
-  border-color: var(--amber-border);
-  transform: translateY(-3px);
-  text-decoration: none;
+@media (hover: hover) {
+  .repo-card:hover {
+    border-color: var(--amber-border);
+    transform: translateY(-3px);
+    box-shadow:
+      var(--shadow),
+      0 0 0 1px var(--amber-border);
+    text-decoration: none;
+  }
 }
 
 .repo-card-gallery {
@@ -144,8 +149,10 @@
   font-size: 14.5px;
 }
 
-.repo-card:hover .repo-card-name {
-  color: var(--amber);
+@media (hover: hover) {
+  .repo-card:hover .repo-card-name {
+    color: var(--amber);
+  }
 }
 
 .repo-card-description {

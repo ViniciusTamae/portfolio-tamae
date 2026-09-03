@@ -1,7 +1,8 @@
-import operatorPhoto from "../assets/operator.png";
-import { profile } from "../data/profile";
-import { useLanguage } from "../i18n/LanguageContext";
-import { AgentTrace } from "./AgentTrace";
+import operatorPhoto from "../../assets/operator.png";
+import { profile } from "../../data/profile";
+import { useLanguage } from "../../i18n/LanguageContext";
+import { AgentTrace } from "../ui/AgentTrace";
+import { WinBar } from "../ui/WinBar";
 import "./Hero.css";
 
 export function Hero() {
@@ -44,13 +45,7 @@ export function Hero() {
 
         <div className="hero-panels">
           <div className="card operator-panel">
-            <div className="win-bar">
-              <span className="win-dots">
-                <span />
-                <span />
-              </span>
-              operator.png
-            </div>
+            <WinBar>operator.png</WinBar>
             <img src={operatorPhoto} alt={profile.name} className="operator-photo" />
           </div>
 

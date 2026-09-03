@@ -1,14 +1,14 @@
 import { Analytics } from "@vercel/analytics/react";
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { About } from "./components/About";
-import { Skills } from "./components/Skills";
-import { Experience } from "./components/Experience";
-import { Hackathon } from "./components/Hackathon";
-import { Projects } from "./components/Projects";
-import { Contact } from "./components/Contact";
-import { Footer } from "./components/Footer";
-import { ChatWidget } from "./components/ChatWidget";
+import { Header } from "./components/layout/Header";
+import { Footer } from "./components/layout/Footer";
+import { Hero } from "./components/sections/Hero";
+import { About } from "./components/sections/About";
+import { Skills } from "./components/sections/Skills";
+import { Experience } from "./components/sections/Experience";
+import { Hackathon } from "./components/sections/Hackathon";
+import { Projects } from "./components/sections/Projects";
+import { Contact } from "./components/sections/Contact";
+import { ChatWidget } from "./components/chat/ChatWidget";
 
 function App() {
   return (

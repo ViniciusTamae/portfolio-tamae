@@ -13,11 +13,20 @@ export const featuredProjects: FeaturedProject[] = [
   },
   {
     id: "projeto-maria",
-    stack: ["NestJS", "Node.js", "Arquitetura de Agentes", "Performance"],
+    stack: [
+      "NestJS",
+      "LangGraph",
+      "RabbitMQ",
+      "Redis",
+      "GraphQL",
+      "TypeORM",
+      "PostgreSQL",
+      "Typesense",
+    ],
   },
   {
     id: "evals",
-    stack: ["Claude Skills", "Automação de Testes", "QA de IA"],
+    stack: ["TypeScript", "Node.js", "PostgreSQL", "YAML", "Zod"],
   },
   {
     id: "vtex",

@@ -1,0 +1,95 @@
+/* Stack apresentada como um único painel — saída de `tree stack/`, ecoando
+   o "ls stack/" do eyebrow da seção. Uma linha por área, com o conector de
+   árvore (├─/└─) amarrando tudo num bloco de terminal só, em vez de tags
+   soltas espalhadas pela seção. */
+.skills-panel {
+  padding: 0;
+}
+
+.skills-tree {
+  list-style: none;
+  margin: 0;
+  padding: 6px 28px 20px;
+}
+
+.skills-row {
+  display: grid;
+  grid-template-columns: 22px minmax(160px, 200px) 1fr;
+  align-items: baseline;
+  column-gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.skills-row:last-child {
+  border-bottom: none;
+}
+
+.skills-row-connector {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.skills-row-label {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--teal);
+  white-space: nowrap;
+}
+
+.skills-row-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+/* As ferramentas de orquestração de agentes de IA — o maior diferencial —
+   já chegam destacadas, sem precisar de hover pra se sobressair. */
+.skill-tag-highlight {
+  border-color: var(--amber-border);
+  color: var(--amber);
+  background: var(--amber-soft);
+}
+
+@media (hover: hover) {
+  .skill-tag:hover {
+    border-color: var(--amber-border);
+    color: var(--amber);
+    box-shadow: 0 0 0 3px var(--amber-soft);
+  }
+}
+
+@media (max-width: 640px) {
+  .skills-tree {
+    padding: 4px 18px 16px;
+  }
+
+  .skills-row {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+    padding: 14px 0;
+  }
+
+  .skills-row-connector {
+    display: none;
+  }
+
+  .skills-row-label::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 1px;
+    background: var(--border-strong);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+}

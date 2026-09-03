@@ -1,7 +1,8 @@
-import { profile } from "../data/profile";
-import { useInView } from "../hooks/useInView";
-import { useLanguage } from "../i18n/LanguageContext";
-import { GithubIcon, LinkedinIcon, MailIcon } from "./icons";
+import { profile } from "../../data/profile";
+import { useInView } from "../../hooks/useInView";
+import { useLanguage } from "../../i18n/LanguageContext";
+import { LinkedinIcon, MailIcon, WhatsappIcon } from "../ui/icons";
+import { WinBar } from "../ui/WinBar";
 import "./Contact.css";
 
 export function Contact() {
@@ -18,13 +19,7 @@ export function Contact() {
       <h2 className="section-title contact-title">{t.contact.title}</h2>
 
       <div className="contact-panel card">
-        <div className="win-bar">
-          <span className="win-dots">
-            <span />
-            <span />
-          </span>
-          {t.contact.panelLabel}
-        </div>
+        <WinBar>{t.contact.panelLabel}</WinBar>
         <div className="contact-body">
           <p className="contact-text">{t.contact.text}</p>
 
@@ -34,6 +29,15 @@ export function Contact() {
               <MailIcon /> {profile.email}
             </a>
             <a
+              href={profile.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              className="contact-line"
+            >
+              <span className="contact-line-prefix">&gt;</span>
+              <WhatsappIcon /> WhatsApp
+            </a>
+            <a
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
@@ -41,10 +45,6 @@ export function Contact() {
             >
               <span className="contact-line-prefix">&gt;</span>
               <LinkedinIcon /> linkedin.com/in/vinicius-tamae
-            </a>
-            <a href={profile.github} target="_blank" rel="noreferrer" className="contact-line">
-              <span className="contact-line-prefix">&gt;</span>
-              <GithubIcon /> github.com/{profile.githubUser}
             </a>
           </div>
 

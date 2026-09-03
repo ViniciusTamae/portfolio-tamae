@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { profile } from "../data/profile";
-import { useLanguage } from "../i18n/LanguageContext";
-import { ChatIcon, CloseIcon, MinimizeIcon, SendIcon } from "./icons";
+import { profile } from "../../data/profile";
+import { useLanguage } from "../../i18n/LanguageContext";
+import { ChatIcon, CloseIcon, MinimizeIcon, SendIcon } from "../ui/icons";
+import { WinDots } from "../ui/WinBar";
 import "./ChatWidget.css";
 
 type ChatMessage = {
@@ -121,10 +122,7 @@ export function ChatWidget() {
         <div className="chat-panel card" role="dialog" aria-label={t.chat.dialogLabel(AI_NAME)}>
           <div className="win-bar chat-panel-bar">
             <span className="chat-panel-bar-left">
-              <span className="win-dots">
-                <span />
-                <span />
-              </span>
+              <WinDots />
               {t.chat.panelLabel}
             </span>
             <span className="chat-panel-bar-right">

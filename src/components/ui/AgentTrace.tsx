@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { WinBar } from "./WinBar";
 import "./AgentTrace.css";
 
 type Line = {
@@ -85,13 +86,7 @@ export function AgentTrace() {
 
   return (
     <div className="agent-trace card">
-      <div className="win-bar">
-        <span className="win-dots">
-          <span />
-          <span />
-        </span>
-        agent.trace
-      </div>
+      <WinBar>agent.trace</WinBar>
       <pre className="agent-trace-body" aria-live="polite">
         {completedLines.map((line, index) => (
           <span key={index} className={`trace-line trace-${line.tone}`}>

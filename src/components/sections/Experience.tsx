@@ -1,7 +1,7 @@
-import { profile } from "../data/profile";
-import { useInView } from "../hooks/useInView";
-import { useLanguage } from "../i18n/LanguageContext";
-import { RevealItem } from "./RevealItem";
+import { profile } from "../../data/profile";
+import { useInView } from "../../hooks/useInView";
+import { useLanguage } from "../../i18n/LanguageContext";
+import { RevealItem } from "../ui/RevealItem";
 import "./Experience.css";
 
 // Hash curta e determinística (não é um hash de commit real — é só o

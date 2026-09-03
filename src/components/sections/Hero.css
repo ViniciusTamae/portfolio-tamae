@@ -57,9 +57,11 @@
     color 0.25s ease;
 }
 
-.hero-name-letter:hover {
-  transform: translateY(-10px);
-  color: var(--amber);
+@media (hover: hover) {
+  .hero-name-letter:hover {
+    transform: translateY(-10px);
+    color: var(--amber);
+  }
 }
 
 .hero-role {

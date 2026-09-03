@@ -1,0 +1,255 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: rgba(11, 10, 8, 0.85);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header-inner {
+  max-width: 1080px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.brand-dot {
+  color: var(--amber);
+}
+
+.brand:hover {
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+}
+
+.nav a {
+  position: relative;
+  font-family: var(--mono);
+  color: var(--ink-dim);
+  font-size: 13.5px;
+  padding-bottom: 3px;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--amber);
+  transition: right 0.2s ease;
+}
+
+@media (hover: hover) {
+  .nav a:hover {
+    color: var(--amber);
+    text-decoration: none;
+  }
+
+  .nav a:hover::after {
+    right: 0;
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.lang-switch {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.lang-btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 9px;
+  background: transparent;
+  color: var(--ink-faint);
+  border: none;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.lang-btn + .lang-btn {
+  border-left: 1px solid var(--border);
+}
+
+.lang-btn:hover {
+  color: var(--ink);
+}
+
+.lang-btn-active {
+  color: #14120d;
+  background: var(--amber);
+}
+
+.lang-btn-active:hover {
+  color: #14120d;
+}
+
+.social-icons {
+  display: flex;
+  gap: 14px;
+  color: var(--ink-dim);
+}
+
+.social-icons a {
+  color: inherit;
+  display: flex;
+}
+
+.social-icons a:hover {
+  color: var(--amber);
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.menu-toggle:hover {
+  border-color: var(--amber-border);
+  color: var(--amber);
+}
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: rgba(11, 10, 8, 0.6);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.menu-backdrop-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 56;
+  width: min(300px, 82vw);
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.menu-drawer-open {
+  transform: translateX(0);
+}
+
+.menu-drawer-bar {
+  flex-shrink: 0;
+}
+
+.menu-drawer-nav {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  overflow-y: auto;
+}
+
+.menu-drawer-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  font-family: var(--mono);
+  font-size: 15px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--border);
+}
+
+.menu-drawer-nav a:hover {
+  color: var(--amber);
+  text-decoration: none;
+}
+
+.menu-drawer-nav-prefix {
+  color: var(--amber-dim);
+}
+
+.menu-drawer-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 780px) {
+  .nav {
+    display: none;
+  }
+
+  .header-actions > .lang-switch,
+  .header-actions > .social-icons {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+@media (min-width: 781px) {
+  .menu-backdrop,
+  .menu-drawer {
+    display: none;
+  }
+}

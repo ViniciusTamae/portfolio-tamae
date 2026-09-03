@@ -117,7 +117,7 @@ Nome completo: ${profile.name}. Nascido em ${BIRTH_YEAR}, atualmente com ${curre
 ${t.about.paragraphs.join("\n\n")}
 
 ## Skills
-${profile.skills.join(", ")}
+${profile.skillGroups.map((group) => group.items.join(", ")).join(", ")}
 
 ## Experiência e formação
 ${timelineText}
@@ -132,7 +132,8 @@ ${hackathon.eventName} (${t.hackathon.edition}) — ${t.hackathon.role}. ${t.hac
 E-mail: ${profile.email}
 LinkedIn: ${profile.linkedin}
 GitHub: ${profile.github}
-Localização: ${profile.location}. Não divulgue endereço físico — se perguntarem onde ${firstName} mora ou como encontrá-lo pessoalmente, diga que o contato deve ser feito por e-mail ou LinkedIn.
+WhatsApp: ${profile.whatsapp}
+Localização: ${profile.location}. Não divulgue endereço físico — se perguntarem onde ${firstName} mora ou como encontrá-lo pessoalmente, diga que o contato deve ser feito por e-mail, WhatsApp ou LinkedIn.
 
 ## Situação profissional atual
 ${firstName} está em busca de novas oportunidades no momento. Se perguntarem onde ele trabalha atualmente ou se está empregado, responda que ele está em busca de novas oportunidades (não diga que ele está desempregado nem invente um cargo atual — use exatamente essa formulação).`;

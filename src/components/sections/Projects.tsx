@@ -1,11 +1,11 @@
-import bingoOnlineScreenshot from "../assets/repo-bingo-online-cover.png";
-import { profile } from "../data/profile";
-import { featuredProjects } from "../data/projects";
-import { useGithubRepos } from "../hooks/useGithubRepos";
-import { useInView } from "../hooks/useInView";
-import { useLanguage } from "../i18n/LanguageContext";
-import { CodeIcon, ExternalLinkIcon, GithubIcon, StarIcon } from "./icons";
-import { RevealItem } from "./RevealItem";
+import bingoOnlineScreenshot from "../../assets/repo-bingo-online-cover.png";
+import { profile } from "../../data/profile";
+import { featuredProjects } from "../../data/projects";
+import { useGithubRepos } from "../../hooks/useGithubRepos";
+import { useInView } from "../../hooks/useInView";
+import { useLanguage } from "../../i18n/LanguageContext";
+import { CodeIcon, ExternalLinkIcon, GithubIcon, StarIcon } from "../ui/icons";
+import { RevealItem } from "../ui/RevealItem";
 import "./Projects.css";
 
 // Capturas de tela para repositórios específicos, buscadas por nome do repo.
@@ -90,12 +90,13 @@ export function Projects() {
                   {screenshots ? (
                     <div className="repo-card-gallery" data-count={screenshots.length}>
                       {screenshots.map((src, screenshotIndex) => (
-                        <img
-                          key={src}
-                          src={src}
-                          alt={`${t.projects.screenshotAlt} ${screenshotIndex + 1} — ${repo.name}`}
-                          className="repo-card-image"
-                        />
+                        <RevealItem key={src} variant="zoom">
+                          <img
+                            src={src}
+                            alt={`${t.projects.screenshotAlt} ${screenshotIndex + 1} — ${repo.name}`}
+                            className="repo-card-image"
+                          />
+                        </RevealItem>
                       ))}
                     </div>
                   ) : (
